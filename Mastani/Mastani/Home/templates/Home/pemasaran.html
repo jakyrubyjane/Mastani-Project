@@ -1,0 +1,159 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    let cart = [];
+
+    function addToCart(item) {
+        cart.push(item);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        alert(`${item.name} has been added to the cart!`);
+    }
+
+    const products = [
+{
+    name: "Carrot",
+    price: 20,
+    description: "Fresh and crunchy carrots, rich in beta-carotene and essential nutrients.",
+    image: "https://images.unsplash.com/photo-1576402187874-2b6d19045d48?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80",
+},
+{
+    name: "Broccoli",
+    price: 30,
+    description: "Green and fresh broccoli, perfect for steaming or stir-frying.",
+    image: ".unsplas.com/phot-1592928307913-fd7b9e3a1136?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80",
+},
+{
+    name: "Spinach",
+    price: 15,
+    description: "Leafy green spinach packed with iron and vitamins.",
+    image: "https://images.unsplash.com/photo-1610450947725-b478da65e02d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80",
+},
+{
+    name: "Tomato",
+    price: 25,
+    description: "Juicy red tomatoes, ideal for salads and sauces.",
+    image: "https://images.unsplash.com/photo-1582281251233-f54ac93e3463?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80",
+},
+{
+    name: "Potato",
+    price: 18,
+    description: "Versatile potatoes, perfect for boiling, frying, or baking.",
+    image: "https://images.unsplash.com/photo-1567220612814-44d6fe4cc0c3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80",
+},
+{
+    name: "Onion",
+    price: 22,
+    description: "Flavorful onions, an essential ingredient in various cuisines.",
+    image: "https://images.unsplash.com/photo-1593088580608-8e4a935d14b9?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80",
+},
+{
+    name: "Garlic",
+    price: 40,
+    description: "Aromatic garlic, perfect for enhancing flavors in dishes.",
+    image: "https://images.unsplash.com/photo-1590080874855-96a3e32b89fa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80",
+},
+{
+    name: "Cucumber",
+    price: 12,
+    description: "Fresh and hydrating cucumbers, great for salads and snacks.",
+    image: "https://images.unsplash.com/photo-1611175692085-0408b4cbb43c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80",
+},
+{
+    name: "Capsicum",
+    price: 35,
+    description: "Vibrant and crunchy capsicum, perfect for stir-fries and salads.",
+    image: "https://images.unsplash.com/photo-1610387268427-98271cb71f3c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80",
+},
+{
+    name: "Lettuce",
+    price: 28,
+    description: "Crisp and fresh lettuce, great for sandwiches and wraps.",
+    image: "https://images.unsplash.com/photo-1622517179816-d363b9f85cf1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80",
+},
+{
+    name: "Sweet Corn",
+    price: 30,
+    description: "Sweet and tender corn, perfect for boiling or grilling.",
+    image: "https://images.unsplash.com/photo-1624992991093-3c5aa110297e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80",
+},
+{
+    name: "Peas",
+    price: 32,
+    description: "Fresh green peas, rich in flavor and nutrients.",
+    image: "https://images.unsplash.com/photo-1524593403294-284dedef8a44?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80",
+},
+{
+    name: "Eggplant",
+    price: 24,
+    description: "Rich and meaty eggplants, ideal for grilling or roasting.",
+    image: "https://images.unsplash.com/photo-1580502307565-733f70b29a39?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80",
+},
+{
+    name: "Zucchini",
+    price: 20,
+    description: "Mild and versatile zucchini, great for sautés and baking.",
+    image: "https://images.unsplash.com/photo-1600703123086-2a6e5b5d33bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80",
+},
+{
+    name: "Pumpkin",
+    price: 45,
+    description: "Sweet and flavorful pumpkin, perfect for soups and pies.",
+    image: "https://images.unsplash.com/photo-1601741595983-d5d8a2ef7e6c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1350&q=80",
+},
+];
+
+    function renderProducts() {
+        const container = document.getElementById("product-container");
+        products.forEach((product) => {
+            const card = `
+                <div class="relative flex flex-col h-full rounded-lg bg-white shadow-md p-4">
+                    <div class="h-60 w-full overflow-hidden rounded-lg">
+                        <img
+                            src="${product.image}"
+                            class="h-full w-full object-cover"
+                            alt="${product.name}"
+                        />
+                    </div>
+                    <div class="flex flex-col justify-between flex-grow mt-4">
+                        <div>
+                            <p class="font-medium text-lg text-gray-900">${product.name}</p>
+                            <p class="font-semibold text-green-500">$${product.price}</p>
+                            <p class="text-sm text-gray-700 mt-2">${product.description}</p>
+                        </div>
+                        <button
+                            class="mt-4 rounded-lg bg-green-500 py-2 px-4 text-center text-white hover:bg-green-600"
+                            onclick="addToCart({name: '${product.name}', price: ${product.price}, description: '${product.description}'})"
+                        >
+                            Add to Cart
+                        </button>
+                    </div>
+                </div>
+            `;
+            container.innerHTML += card;
+        });
+    }
+
+    window.onload = renderProducts;
+</script>
+</head>
+<body class="bg-gray-100">
+<!-- Ikon Keranjang -->
+<div class="fixed top-5 right-5 z-50">
+    <a href="{% url 'cart' %}" class="flex items-center justify-center w-12 h-12 bg-green-500 text-white rounded-full shadow-lg hover:bg-green-600">
+        <!-- Heroicon: Shopping Cart -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13L5.4 5M7 13l-4 8M21 21a1 1 0 11-2 0 1 1 0 012 0zm-10 0a1 1 0 11-2 0 1 1 0 012 0z" />
+        </svg>
+    </a>
+</div>
+
+<!-- Kontainer Produk -->
+<div class="container mx-auto p-6 px-4 sm:px-6 lg:px-10">
+    <div id="product-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Cards will be dynamically inserted here -->
+    </div>
+</div>
+
+
+{% endblock %}
+
