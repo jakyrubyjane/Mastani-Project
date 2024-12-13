@@ -21,7 +21,7 @@
       <nav class="space-y-4">
         <a href="{% url 'seller_dashboard' %}" class="block px-4 py-2 rounded hover:bg-green-600 transition-all duration-500 ease-in-out">Dashboard</a>
         <a href="{% url 'profile_seller' %}" class="block px-4 py-2 rounded hover:bg-green-600 transition-all duration-500 ease-in-out">Profile</a>
-        <a href="" class="block px-4 py-2 rounded hover:bg-green-600 transition-all duration-500 ease-in-out">Produk Saya</a>
+        <a href="{% url 'product_list' %}" class="block px-4 py-2 rounded hover:bg-green-600 transition-all duration-500 ease-in-out">Produk Saya</a>
         <form action="{% url 'logout' %}" method="post">
           {% csrf_token %}
           <button type="submit" class="block px-4 py-2 rounded hover:bg-green-600 transition-all duration-500 ease-in-out">Logout</button>
